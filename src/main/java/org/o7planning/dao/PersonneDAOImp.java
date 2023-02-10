@@ -104,21 +104,9 @@ public class PersonneDAOImp implements PersonneDAO{
         });
     }
 
-    public List<Personne> getPersonnesByNomEtPrenom(String nom,String prenom){
-        return template.query("select * from PERSONNE where nom like '%"+nom+"%' and prenom like '%"+prenom+"%'",new RowMapper<Personne>(){
-            public Personne mapRow(ResultSet rs, int row) throws SQLException {
-                Personne p=new Personne();
-                p.setNom(rs.getString(2));
-                p.setPrenom(rs.getString(3));
-                p.setCivilite(rs.getString(4));
-                p.setAdresse(rs.getString(5));
-                return p;
-            }
-        });
-    }
 
     public List<Personne> getPersonnesByNomEtPrenomEtCivilite(String nom,String prenom,String civilite){
-        return template.query("select * from PERSONNE where nom like '%"+nom+"%' and prenom like'%"+prenom+"%' and civilite='"+civilite+"'",new RowMapper<Personne>(){
+        return template.query("select * from PERSONNE where nom like '%"+nom+"%' and prenom like'%"+prenom+"%' and civilite like '%"+civilite+"%'",new RowMapper<Personne>(){
             public Personne mapRow(ResultSet rs, int row) throws SQLException {
                 Personne p=new Personne();
                 p.setNom(rs.getString(2));
@@ -143,16 +131,5 @@ public class PersonneDAOImp implements PersonneDAO{
         });
     }
 
-    public List<Personne> getPersonnesByPrenomEtCivilite(String prenom,String civilite){
-        return template.query("select * from PERSONNE where prenom like '%"+prenom+"%' and civilite='"+civilite+"'",new RowMapper<Personne>(){
-            public Personne mapRow(ResultSet rs, int row) throws SQLException {
-                Personne p=new Personne();
-                p.setNom(rs.getString(2));
-                p.setPrenom(rs.getString(3));
-                p.setCivilite(rs.getString(4));
-                p.setAdresse(rs.getString(5));
-                return p;
-            }
-        });
-    }
+
 }

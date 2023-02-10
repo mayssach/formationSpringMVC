@@ -1,6 +1,8 @@
 package org.o7planning.dao;
 
 import org.o7planning.model.Personne;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import java.util.List;
 
 public interface PersonneDAO {
@@ -12,8 +14,6 @@ public interface PersonneDAO {
     public List<Personne> getPersonnesByNom(String nom);
     public List<Personne> getPersonnesByPrenom(String prenom);
     public List<Personne> getPersonnesByCivilite(String civilite);
-    public List<Personne> getPersonnesByNomEtPrenom(String nom,String prenom);
     public List<Personne> getPersonnesByNomEtPrenomEtCivilite(String nom,String prenom,String civilite);
-    public List<Personne> getPersonnesByNomEtCivilite(String nom,String civilite);
-    public List<Personne> getPersonnesByPrenomEtCivilite(String prenom,String civilite);
-    }
+    void setTemplate(JdbcTemplate template);
+}

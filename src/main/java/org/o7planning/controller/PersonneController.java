@@ -58,23 +58,11 @@ public class PersonneController {
         return "/recherchepersonne";
     }
     @RequestMapping("/viewrecherche")
-    public String viewrecherche(Model m,@RequestParam("nom") String nom,@RequestParam("prenom") String prenom,@RequestParam("civilite") String civilite) {
+    public String viewrecherche(Model m,@ModelAttribute("personne") Personne personne) {
         List<Personne> liste = null;
-        if (nom != "" && prenom != "" && civilite != "") {
-            liste = dao.getPersonnesByNomEtPrenomEtCivilite(nom,prenom,civilite);
-        } else if (nom != "" && prenom != "" && civilite == "") {
-            liste = dao.getPersonnesByNomEtPrenom(nom,prenom);
-        } else if (nom != "" && prenom == "" && civilite != "") {
-            liste = dao.getPersonnesByNomEtCivilite(nom,civilite);
-        } else if (nom == "" && prenom != "" && civilite != "") {
-            liste = dao.getPersonnesByPrenomEtCivilite(prenom,civilite);
-        } else if (nom == "" && prenom == "" && civilite != "") {
-            liste = dao.getPersonnesByCivilite(civilite);
-        } else if (nom == "" && prenom != "" && civilite == "") {
-            liste = dao.getPersonnesByPrenom(prenom);
-        } else if (nom != "" && prenom == "" && civilite == "") {
-            liste = dao.getPersonnesByNom(nom);
-        }
+        if (personne.getNom() == "" && personne.getPrenom() == "" && personne.getCivilite() == "");
+        else
+            liste = dao.getPersonnesByNomEtPrenomEtCivilite(personne.getNom(), personne.getPrenom(), personne.getCivilite());
         m.addAttribute("liste", liste);
         return "/viewrecherche";
     }
